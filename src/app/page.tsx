@@ -1,95 +1,130 @@
-import Image from "next/image";
+"use client";
+import { useState, useRef, FormEvent, ChangeEvent } from "react";
+import { motion, AnimatePresence } from "framer-motion";
 import styles from "./page.module.css";
 
 export default function Home() {
+  const [password, setPassword] = useState("");
+  const [showInput, setShowInput] = useState(true);
+  const [showAcceptance, setShowAcceptance] = useState(false);
+  const [showForm, setShowForm] = useState(false);
+  const [isSubmitted, setIsSubmitted] = useState(false);
+  const initialInput = useRef<HTMLInputElement | null>(null);
+
+  const passwordChange = (event: ChangeEvent<HTMLInputElement>) => {
+    setPassword(event.target.value);
+    if (event.target.value === "grow") {
+      initialInput.current!.blur();
+      setShowAcceptance((prev) => !prev);
+      setTimeout(() => {
+        setShowInput((prev) => !prev);
+      }, 3000);
+      setTimeout(() => {
+        setShowForm((prev) => !prev);
+      }, 3000);
+    }
+  };
+
+  const onSubmitHandler = (e: FormEvent<HTMLFormElement>) => {
+    e.preventDefault();
+    if (password === "grow") {
+    }
+  };
+
+  const onFormSubmit = (e: FormEvent<HTMLFormElement>) => {
+    e.preventDefault();
+    setShowForm((prev) => !prev);
+    setIsSubmitted((prev) => !prev);
+  };
+
+  const company = "arboretum";
+
   return (
     <main className={styles.main}>
-      <div className={styles.description}>
-        <p>
-          Get started by editing&nbsp;
-          <code className={styles.code}>src/app/page.tsx</code>
-        </p>
-        <div>
-          <a
-            href="https://vercel.com?utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
+      <AnimatePresence mode="wait">
+        {showInput && (
+          <motion.div
+            className={styles.container}
+            key={"password"}
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            transition={{ duration: 1, delay: 2 }}
+            exit={{ opacity: 0 }}
           >
-            By{" "}
-            <Image
-              src="/vercel.svg"
-              alt="Vercel Logo"
-              className={styles.vercelLogo}
-              width={100}
-              height={24}
-              priority
+            <input
+              ref={initialInput}
+              className={styles.passwordInput}
+              type="text"
+              placeholder="Enter Password"
+              value={password}
+              onChange={passwordChange}
+              autoFocus
+              required
             />
-          </a>
-        </div>
-      </div>
-
-      <div className={styles.center}>
-        <Image
-          className={styles.logo}
-          src="/next.svg"
-          alt="Next.js Logo"
-          width={180}
-          height={37}
-          priority
-        />
-      </div>
-
-      <div className={styles.grid}>
-        <a
-          href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-          className={styles.card}
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <h2>
-            Docs <span>-&gt;</span>
-          </h2>
-          <p>Find in-depth information about Next.js features and API.</p>
-        </a>
-
-        <a
-          href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-          className={styles.card}
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <h2>
-            Learn <span>-&gt;</span>
-          </h2>
-          <p>Learn about Next.js in an interactive course with&nbsp;quizzes!</p>
-        </a>
-
-        <a
-          href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-          className={styles.card}
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <h2>
-            Templates <span>-&gt;</span>
-          </h2>
-          <p>Explore starter templates for Next.js.</p>
-        </a>
-
-        <a
-          href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-          className={styles.card}
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <h2>
-            Deploy <span>-&gt;</span>
-          </h2>
-          <p>
-            Instantly deploy your Next.js site to a shareable URL with Vercel.
-          </p>
-        </a>
-      </div>
+            <div className={styles.accessContainer}>
+              {showAcceptance && (
+                <motion.p
+                  initial={{ opacity: 0 }}
+                  animate={{ opacity: 1 }}
+                  transition={{ duration: 2, delay: 1.5 }}
+                  className={styles.success}
+                >
+                  Permission Granted
+                </motion.p>
+              )}
+            </div>
+          </motion.div>
+        )}
+        {showForm && (
+          <div className={styles.container}>
+            <motion.h1
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              transition={{ duration: 1 }}
+              className={styles.company}
+            >
+              arboretum
+            </motion.h1>
+            <motion.form className={styles.inputForm} onSubmit={onFormSubmit}>
+              <div className={styles.inputContainer}>
+                <label htmlFor="name">Name:</label>
+                <input type="text" name="name" autoFocus required />
+              </div>
+              <div className={styles.inputContainer}>
+                <label htmlFor="email">Email:</label>
+                <input type="email" name="email" id="email" required />
+              </div>
+              <div className={styles.inputContainer}>
+                <label htmlFor="response" className={styles.lastLabel}>
+                  How will AI change the world?:
+                </label>
+                <textarea name="response" id="response" required></textarea>
+              </div>
+              <button className={styles.submit} type="submit">
+                submit
+              </button>
+            </motion.form>
+          </div>
+        )}
+        {isSubmitted && (
+          <div className={styles.submitted}>
+            <motion.div
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              transition={{ duration: 2, delay: 2 }}
+            >
+              <h2>Now,</h2>
+            </motion.div>
+            <motion.div
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              transition={{ duration: 2, delay: 5 }}
+            >
+              <h2>we grow.</h2>
+            </motion.div>
+          </div>
+        )}
+      </AnimatePresence>
     </main>
   );
 }
