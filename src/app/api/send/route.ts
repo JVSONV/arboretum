@@ -39,6 +39,7 @@ export async function POST(req: Request) {
             ],
           },
         });
+        throw new Error(data.statusText, formData)
         console.log(data, formData)
         return NextResponse.json({ data: data, formInfo: formData });
       });
