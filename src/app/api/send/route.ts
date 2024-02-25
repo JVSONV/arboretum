@@ -40,10 +40,10 @@ export async function POST(req: Request) {
           },
         });
         console.log(data, formData)
-        return NextResponse.json({ data: data, formInfo: formData }, { status: 201 });
+        return NextResponse.json({ data: data, formInfo: formData });
       });
 
-      return NextResponse.json({ data: response }, { status: 201 });
+      return NextResponse.json({ data: response });
     } catch (error: any) {
       return NextResponse.json({ error: error.message }, { status: 500 });
     }
