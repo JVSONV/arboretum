@@ -40,7 +40,7 @@ export async function POST(req: Request) {
           },
         });
         console.log(data)
-        return NextResponse.json({ data: data }, { status: 201 });
+        return NextResponse.json({ data: data, formInfo: formData }, { status: 201 });
       });
 
       return NextResponse.json({ data: response }, { status: 201 });

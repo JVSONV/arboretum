@@ -51,6 +51,7 @@ const Form = (props: {
         props.formIsSubmitted((prev) => !prev);
         const data = res.body?.getReader();
         const reeed = await data?.read();
+        console.log(reeed)
       })
       .catch((err) => console.log(err));
   };
