@@ -1,7 +1,8 @@
 "use client";
-import { useState, useRef, FormEvent, ChangeEvent } from "react";
+import { useState, useRef, FormEvent, ChangeEvent, Ref } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import styles from "./page.module.css";
+import Form from "./components/Form"
 
 export default function Home() {
   const [password, setPassword] = useState("");
@@ -29,12 +30,6 @@ export default function Home() {
     e.preventDefault();
     if (password === "grow") {
     }
-  };
-
-  const onFormSubmit = (e: FormEvent<HTMLFormElement>) => {
-    e.preventDefault();
-    setShowForm((prev) => !prev);
-    setIsSubmitted((prev) => !prev);
   };
 
   const company = "arboretum";
@@ -76,35 +71,7 @@ export default function Home() {
           </motion.div>
         )}
         {showForm && (
-          <div className={styles.container}>
-            <motion.h1
-              initial={{ opacity: 0 }}
-              animate={{ opacity: 1 }}
-              transition={{ duration: 1 }}
-              className={styles.company}
-            >
-              arboretum
-            </motion.h1>
-            <motion.form className={styles.inputForm} onSubmit={onFormSubmit}>
-              <div className={styles.inputContainer}>
-                <label htmlFor="name">Name:</label>
-                <input type="text" name="name" autoFocus required />
-              </div>
-              <div className={styles.inputContainer}>
-                <label htmlFor="email">Email:</label>
-                <input type="email" name="email" id="email" required />
-              </div>
-              <div className={styles.inputContainer}>
-                <label htmlFor="response" className={styles.lastLabel}>
-                  How will AI change the world?:
-                </label>
-                <textarea name="response" id="response" required></textarea>
-              </div>
-              <button className={styles.submit} type="submit">
-                submit
-              </button>
-            </motion.form>
-          </div>
+          <Form formIsSubmitted={setIsSubmitted} formIsVisable={setShowForm}/>
         )}
         {isSubmitted && (
           <div className={styles.submitted}>
