@@ -20,7 +20,7 @@ export async function POST(req: Request) {
         }
 
         const gsapi = google.sheets({ version: "v4", auth: jwt });
-
+        console.log(formData)
         const data = await gsapi.spreadsheets.values.append({
           spreadsheetId: process.env.GOOGLE_SHEET_ID,
           range: "Sheet1!A1:D1",
@@ -39,7 +39,7 @@ export async function POST(req: Request) {
             ],
           },
         });
-
+        console.log(data)
         return NextResponse.json({ data: data }, { status: 201 });
       });
 

@@ -50,7 +50,7 @@ export default function Home() {
               ref={initialInput}
               className={styles.passwordInput}
               type="text"
-              placeholder="Enter Password"
+              placeholder="Password"
               value={password}
               onChange={passwordChange}
               autoFocus
