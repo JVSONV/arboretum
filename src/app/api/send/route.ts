@@ -39,7 +39,7 @@ export async function POST(req: Request) {
             ],
           },
         });
-        console.log(data)
+        console.log(data, formData)
         return NextResponse.json({ data: data, formInfo: formData }, { status: 201 });
       });
 
