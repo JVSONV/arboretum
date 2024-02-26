@@ -39,10 +39,10 @@ const Form = (props: {
 
   // const scriptUrl = `${process.env.API_URL}`;
 
-  const onFormSubmit = (e: FormEvent<HTMLFormElement>) => {
+  const onFormSubmit = async (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
 
-    fetch("/api/send", {
+    await fetch("/api/send", {
       method: "POST",
       body: JSON.stringify(formData),
     })
