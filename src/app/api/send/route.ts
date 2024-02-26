@@ -1,4 +1,5 @@
 "use server";
+export const dynamic = 'force-dynamic'; 
 import { google } from "googleapis";
 import { NextResponse } from "next/server";
 
