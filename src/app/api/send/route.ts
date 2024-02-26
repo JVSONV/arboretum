@@ -1,7 +1,6 @@
-"use server";
-export const dynamic = 'force-dynamic'; 
 import { google } from "googleapis";
 import { NextResponse } from "next/server";
+export const dynamic = 'force-dynamic'; 
 
 export async function POST(req: Request) {
   if (req.method === "POST") {
