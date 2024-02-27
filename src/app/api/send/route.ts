@@ -15,27 +15,26 @@ export async function POST(req: Request) {
       );
 
       const gsapi = google.sheets({ version: "v4", auth: jwt });
-        const data = await gsapi.spreadsheets.values.append({
-          spreadsheetId: `${process.env.GOOGLE_SHEET_ID}`,
+      
+      const data = await gsapi.spreadsheets.values.append({
+        spreadsheetId: `${process.env.GOOGLE_SHEET_ID}`,
+        range: "Sheet1!A1:D1",
+        insertDataOption: "INSERT_ROWS",
+        valueInputOption: "USER_ENTERED",
+        requestBody: {
+          majorDimension: "ROWS",
           range: "Sheet1!A1:D1",
-          insertDataOption: "INSERT_ROWS",
-          valueInputOption: "USER_ENTERED",
-          requestBody: {
-            majorDimension: "ROWS",
-            range: "Sheet1!A1:D1",
-            values: [
-              [
-                formData.name,
-                formData.email,
-                formData.response,
-                formData.linkedIn,
-              ],
+          values: [
+            [
+              formData.name,
+              formData.email,
+              formData.response,
+              formData.linkedIn,
             ],
-          },
-        });
-        console.log(data.data, 1);
-        return NextResponse.json({ data: data.data });
-      // return NextResponse.json({ data: response });
+          ],
+        },
+      });
+      return NextResponse.json({ data: data.data });
     } catch (error: any) {
       return NextResponse.json({ error: error.message }, { status: 500 });
     }

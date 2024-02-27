@@ -46,12 +46,13 @@ const Form = (props: {
       method: "POST",
       body: JSON.stringify(formData),
     })
-      .then(async (res) => {
+      .then((res) => {
         props.formIsVisable((prev: boolean) => !prev);
         props.formIsSubmitted((prev) => !prev);
-        // const data = res.body?.getReader();
-        // const reeed = await data?.read();
-        console.log()
+        return res.json();
+      })
+      .then((data) => {
+        console.log(data);
       })
       .catch((err) => console.log(err));
   };
