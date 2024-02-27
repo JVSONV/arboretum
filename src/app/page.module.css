@@ -1,11 +1,5 @@
 .main {
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
   padding: 1rem;
-  padding-bottom: 0;
-  min-height: 100%;
   color: "#ffff";
 }
 
@@ -23,7 +17,6 @@
   font-size: 2rem;
 }
 .passwordInput {
-  display: block;
   padding-inline: 0;
   margin-bottom: 2rem;
   margin-inline: auto;
