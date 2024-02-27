@@ -7,6 +7,7 @@ import React, {
   useState,
 } from "react";
 import styles from "../page.module.css";
+import Company from "./Company";
 
 const Form = (props: {
   formIsVisable: Dispatch<SetStateAction<boolean>>;
@@ -30,14 +31,11 @@ const Form = (props: {
       | React.ChangeEvent<HTMLInputElement>
       | React.ChangeEvent<HTMLTextAreaElement>
   ) => {
-    // if (e.target.value.length === 0) return;
     setFormData((prev) => ({
       ...prev,
       [e.target.name]: e.target.value,
     }));
   };
-
-  // const scriptUrl = `${process.env.API_URL}`;
 
   const onFormSubmit = async (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
@@ -49,10 +47,6 @@ const Form = (props: {
       .then((res) => {
         props.formIsVisable((prev: boolean) => !prev);
         props.formIsSubmitted((prev) => !prev);
-        return res.json();
-      })
-      .then((data) => {
-        console.log(data);
       })
       .catch((err) => console.log(err));
   };
@@ -65,7 +59,7 @@ const Form = (props: {
         transition={{ duration: 1 }}
         className={styles.company}
       >
-        arboretum
+        <Company />
       </motion.h1>
       <motion.form
         ref={formRef}
