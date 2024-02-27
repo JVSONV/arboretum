@@ -67,7 +67,7 @@ const Password = (props: {
           autoFocus
           required
         />
-        <button type="submit" onClick={formRef.current?.submit}>Submit</button>
+        <button type="submit">Submit</button>
       </form>
       <div className={styles.accessContainer}>
         {showAcceptance && <div>Permission Granted</div>}
