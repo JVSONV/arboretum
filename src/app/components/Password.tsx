@@ -8,7 +8,6 @@ import React, {
 } from "react";
 import { motion } from "framer-motion";
 import styles from "../page.module.css";
-import { on } from "events";
 
 const Password = (props: {
   showFormHandler: Dispatch<SetStateAction<boolean>>;
@@ -35,9 +34,9 @@ const Password = (props: {
 
   const passwordChange = (event: ChangeEvent<HTMLInputElement>) => {
     setPassword(event.target.value);
-    // if (event.target.value === "grow") {
-    //   initialInput.current!.blur();
-    // //   formRef.current?.submit();
+    if (event.target.value === "grow") {
+      initialInput.current!.blur();
+      formRef.current?.submit;
     //   setShowAcceptance((prev) => !prev);
     //   setTimeout(() => {
     //     props.showInputHandler((prev) => !prev);
@@ -45,7 +44,7 @@ const Password = (props: {
     //   setTimeout(() => {
     //     props.showFormHandler((prev: any) => !prev);
     //   }, 3000);
-    // }
+    }
   };
 
   return (
@@ -68,19 +67,10 @@ const Password = (props: {
           autoFocus
           required
         />
-        <button type="submit">Submit</button>
+        <button type="submit" onClick={formRef.current?.submit}>Submit</button>
       </form>
       <div className={styles.accessContainer}>
-        {showAcceptance && (
-          <motion.p
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            transition={{ duration: 2, delay: 1.5 }}
-            className={styles.success}
-          >
-            Permission Granted
-          </motion.p>
-        )}
+        {showAcceptance && <div>Permission Granted</div>}
       </div>
     </motion.div>
   );
