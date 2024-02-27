@@ -1,12 +1,11 @@
 "use client";
-import { useState, useRef, FormEvent, ChangeEvent, Ref } from "react";
+import { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import styles from "./page.module.css";
 import Form from "./components/Form";
 import Password from "./components/Password";
 
 export default function Home() {
-  const [password, setPassword] = useState("");
   const [showInput, setShowInput] = useState(true);
   const [showForm, setShowForm] = useState(false);
   const [isSubmitted, setIsSubmitted] = useState(false);
