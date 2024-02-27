@@ -68,7 +68,7 @@ const Password = (props: {
           autoFocus
           required
         />
-        <button>Submit</button>
+        <button type="submit">Submit</button>
       </form>
       <div className={styles.accessContainer}>
         {showAcceptance && (
