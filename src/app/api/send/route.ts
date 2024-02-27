@@ -5,12 +5,17 @@ export const dynamic = "force-dynamic";
 export async function POST(req: Request) {
   if (req.method === "POST") {
     const formData = await req.json();
+    const key = process.env.GOOGLE_PRIVATE_KEY!
+    const keyArr = key.split("")
+    keyArr.pop()
+    keyArr.shift()
+    
 
     try {
       const jwt = new google.auth.JWT(
         process.env.GOOGLE_CLIENT_EMAIL,
         undefined,
-        `${process.env.GOOGLE_PRIVATE_KEY!}`,
+        keyArr.join(","),
         ["https://www.googleapis.com/auth/spreadsheets"]
       );
 
@@ -34,7 +39,7 @@ export async function POST(req: Request) {
           ],
         },
       });
-      return NextResponse.json({ data: data.data, apiKey: process.env.GOOGLE_PRIVATE_KEY });
+      return NextResponse.json({ data: data.data });
     } catch (error: any) {
       return NextResponse.json({ error: error.message }, { status: 500 });
     }
