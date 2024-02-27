@@ -18,10 +18,9 @@ const Password = (props: {
   const initialInput = useRef<HTMLInputElement | null>(null);
   const formRef = useRef<HTMLFormElement | null>(null);
 
-  const onSubmitHandler = (event: FormEvent<HTMLFormElement>) => {
-    event.preventDefault();
+  const onSubmitHandler = () => {
     if (initialInput.current!.value === "grow") {
-      initialInput.current!.blur();
+    //   initialInput.current!.blur();
       setShowAcceptance((prev) => !prev);
       setTimeout(() => {
         props.showInputHandler((prev) => !prev);
@@ -34,17 +33,17 @@ const Password = (props: {
 
   const passwordChange = (event: ChangeEvent<HTMLInputElement>) => {
     setPassword(event.target.value);
-    if (event.target.value === "grow") {
-      initialInput.current!.blur();
-      formRef.current?.submit;
-      //   setShowAcceptance((prev) => !prev);
-      //   setTimeout(() => {
-      //     props.showInputHandler((prev) => !prev);
-      //   }, 3000);
-      //   setTimeout(() => {
-      //     props.showFormHandler((prev: any) => !prev);
-      //   }, 3000);
-    }
+    // if (event.target.value === "grow") {
+    //   initialInput.current!.blur();
+    //   formRef.current?.submit;
+    //     setShowAcceptance((prev) => !prev);
+    //     setTimeout(() => {
+    //       props.showInputHandler((prev) => !prev);
+    //     }, 3000);
+    //     setTimeout(() => {
+    //       props.showFormHandler((prev: any) => !prev);
+    //     }, 3000);
+    // }
   };
 
   return (
@@ -56,7 +55,9 @@ const Password = (props: {
     //   transition={{ duration: 1, delay: 2 }}
     //   exit={{ opacity: 0 }}
     >
-      <form ref={formRef} onSubmit={onSubmitHandler}>
+      <form ref={formRef} onSubmit={(e) => {
+        e.preventDefault()
+        onSubmitHandler()}}>
         <input
           ref={initialInput}
           className={styles.passwordInput}
@@ -67,7 +68,7 @@ const Password = (props: {
           autoFocus
           required
         />
-        <button type="submit">Submit</button>
+        <button type="submit" onClick={onSubmitHandler}>Submit</button>
       </form>
       <div className={styles.accessContainer}>
         {showAcceptance && (
