@@ -5,22 +5,17 @@ export const dynamic = "force-dynamic";
 export async function POST(req: Request) {
   if (req.method === "POST") {
     const formData = await req.json();
-    const key = process.env.GOOGLE_PRIVATE_KEY!
-    const keyArr = key.split("")
-    keyArr.pop()
-    keyArr.shift()
-    
 
     try {
       const jwt = new google.auth.JWT(
         process.env.GOOGLE_CLIENT_EMAIL,
         undefined,
-        keyArr.join(","),
+        process.env.GOOGLE_PRIVATE_KEY,
         ["https://www.googleapis.com/auth/spreadsheets"]
       );
 
       const gsapi = google.sheets({ version: "v4", auth: jwt });
-      
+
       const data = await gsapi.spreadsheets.values.append({
         spreadsheetId: `${process.env.GOOGLE_SHEET_ID}`,
         range: "Sheet1!A1:D1",
