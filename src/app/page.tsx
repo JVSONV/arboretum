@@ -2,29 +2,29 @@
 import { useState, useRef, FormEvent, ChangeEvent, Ref } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import styles from "./page.module.css";
-import Form from "./components/Form"
+import Form from "./components/Form";
+import Password from "./components/Password";
 
 export default function Home() {
   const [password, setPassword] = useState("");
   const [showInput, setShowInput] = useState(true);
-  const [showAcceptance, setShowAcceptance] = useState(false);
   const [showForm, setShowForm] = useState(false);
   const [isSubmitted, setIsSubmitted] = useState(false);
   const initialInput = useRef<HTMLInputElement | null>(null);
 
-  const passwordChange = (event: ChangeEvent<HTMLInputElement>) => {
-    setPassword(event.target.value);
-    if (event.target.value === "grow") {
-      initialInput.current!.blur();
-      setShowAcceptance((prev) => !prev);
-      setTimeout(() => {
-        setShowInput((prev) => !prev);
-      }, 3000);
-      setTimeout(() => {
-        setShowForm((prev) => !prev);
-      }, 3000);
-    }
-  };
+  // const passwordChange = (event: ChangeEvent<HTMLInputElement>) => {
+  //   setPassword(event.target.value);
+  //   if (event.target.value === "grow") {
+  //     initialInput.current!.blur();
+  //     setShowAcceptance((prev) => !prev);
+  //     setTimeout(() => {
+  //       setShowInput((prev) => !prev);
+  //     }, 3000);
+  //     setTimeout(() => {
+  //       setShowForm((prev) => !prev);
+  //     }, 3000);
+  //   }
+  // };
 
   const onSubmitHandler = (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
@@ -37,41 +37,9 @@ export default function Home() {
   return (
     <main className={styles.main}>
       <AnimatePresence mode="wait">
-        {showInput && (
-          <motion.div
-            className={styles.container}
-            key={"password"}
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            transition={{ duration: 1, delay: 2 }}
-            exit={{ opacity: 0 }}
-          >
-            <input
-              ref={initialInput}
-              className={styles.passwordInput}
-              type="text"
-              placeholder="Password"
-              value={password}
-              onChange={passwordChange}
-              autoFocus
-              required
-            />
-            <div className={styles.accessContainer}>
-              {showAcceptance && (
-                <motion.p
-                  initial={{ opacity: 0 }}
-                  animate={{ opacity: 1 }}
-                  transition={{ duration: 2, delay: 1.5 }}
-                  className={styles.success}
-                >
-                  Permission Granted
-                </motion.p>
-              )}
-            </div>
-          </motion.div>
-        )}
+        {showInput && <Password showFormHandler={setShowForm} showInputHandler={setShowInput}/>}
         {showForm && (
-          <Form formIsSubmitted={setIsSubmitted} formIsVisable={setShowForm}/>
+          <Form formIsSubmitted={setIsSubmitted} formIsVisable={setShowForm} />
         )}
         {isSubmitted && (
           <div className={styles.submitted}>
