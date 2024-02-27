@@ -37,24 +37,24 @@ const Password = (props: {
     if (event.target.value === "grow") {
       initialInput.current!.blur();
       formRef.current?.submit;
-    //   setShowAcceptance((prev) => !prev);
-    //   setTimeout(() => {
-    //     props.showInputHandler((prev) => !prev);
-    //   }, 3000);
-    //   setTimeout(() => {
-    //     props.showFormHandler((prev: any) => !prev);
-    //   }, 3000);
+      //   setShowAcceptance((prev) => !prev);
+      //   setTimeout(() => {
+      //     props.showInputHandler((prev) => !prev);
+      //   }, 3000);
+      //   setTimeout(() => {
+      //     props.showFormHandler((prev: any) => !prev);
+      //   }, 3000);
     }
   };
 
   return (
-    <motion.div
+    <div
       className={styles.container}
-      key={"password"}
-      initial={{ opacity: 0 }}
-      animate={{ opacity: 1 }}
-      transition={{ duration: 1, delay: 2 }}
-      exit={{ opacity: 0 }}
+    //   key={"password"}
+    //   initial={{ opacity: 0 }}
+    //   animate={{ opacity: 1 }}
+    //   transition={{ duration: 1, delay: 2 }}
+    //   exit={{ opacity: 0 }}
     >
       <form ref={formRef} onSubmit={onSubmitHandler}>
         <input
@@ -70,9 +70,18 @@ const Password = (props: {
         <button type="submit">Submit</button>
       </form>
       <div className={styles.accessContainer}>
-        {showAcceptance && <div>Permission Granted</div>}
+        {showAcceptance && (
+          <p
+            // initial={{ opacity: 0 }}
+            // animate={{ opacity: 1 }}
+            // transition={{ duration: 2, delay: 1.5 }}
+            // className={styles.success}
+          >
+            Permission Granted
+          </p>
+        )}
       </div>
-    </motion.div>
+    </div>
   );
 };
 

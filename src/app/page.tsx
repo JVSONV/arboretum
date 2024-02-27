@@ -33,30 +33,30 @@ export default function Home() {
 
   return (
     <main className={styles.main}>
-      <AnimatePresence mode="wait">
+      {/* <AnimatePresence mode="wait"> */}
         {showInput && <Password showFormHandler={setShowForm} showInputHandler={setShowInput}/>}
         {showForm && (
           <Form formIsSubmitted={setIsSubmitted} formIsVisable={setShowForm} />
         )}
         {isSubmitted && (
           <div className={styles.submitted}>
-            <motion.div
-              initial={{ opacity: 0 }}
-              animate={{ opacity: 1 }}
-              transition={{ duration: 2, delay: 2 }}
+            <div
+              // initial={{ opacity: 0 }}
+              // animate={{ opacity: 1 }}
+              // transition={{ duration: 2, delay: 2 }}
             >
               <h2>Now,</h2>
-            </motion.div>
-            <motion.div
-              initial={{ opacity: 0 }}
-              animate={{ opacity: 1 }}
-              transition={{ duration: 2, delay: 5 }}
+            </div>
+            <div
+              // initial={{ opacity: 0 }}
+              // animate={{ opacity: 1 }}
+              // transition={{ duration: 2, delay: 5 }}
             >
               <h2>we grow.</h2>
-            </motion.div>
+            </div>
           </div>
         )}
-      </AnimatePresence>
+      {/* </AnimatePresence> */}
     </main>
   );
 }
