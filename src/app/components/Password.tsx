@@ -55,7 +55,7 @@ const Password = (props: {
       transition={{ duration: 1, delay: 2 }}
       exit={{ opacity: 0 }}
     >
-      <form onSubmit={}>
+      <form onSubmit={onSubmitHandler}>
         <input
           ref={initialInput}
           className={styles.passwordInput}
