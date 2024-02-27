@@ -33,7 +33,8 @@ const Password = (props: {
     }
   };
 
-  const onSubmitHandler = () => {
+  const onSubmitHandler = (event: FormEvent<HTMLFormElement>) => {
+    event.preventDefault()
     if (password === "grow") {
       initialInput.current!.blur();
       setShowAcceptance((prev) => !prev);
