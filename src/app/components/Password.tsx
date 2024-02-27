@@ -1,12 +1,14 @@
 import React, {
   ChangeEvent,
   Dispatch,
+  FormEvent,
   SetStateAction,
   useRef,
   useState,
 } from "react";
 import { motion } from "framer-motion";
 import styles from "../page.module.css";
+import { on } from "events";
 
 const Password = (props: {
   showFormHandler: Dispatch<SetStateAction<boolean>>;
@@ -19,6 +21,20 @@ const Password = (props: {
   const passwordChange = (event: ChangeEvent<HTMLInputElement>) => {
     setPassword(event.target.value);
     if (event.target.value === "grow") {
+      initialInput.current!.blur();
+      onSubmitHandler();
+      setShowAcceptance((prev) => !prev);
+      setTimeout(() => {
+        props.showInputHandler((prev) => !prev);
+      }, 3000);
+      setTimeout(() => {
+        props.showFormHandler((prev: any) => !prev);
+      }, 3000);
+    }
+  };
+
+  const onSubmitHandler = () => {
+    if (password === "grow") {
       initialInput.current!.blur();
       setShowAcceptance((prev) => !prev);
       setTimeout(() => {
@@ -39,16 +55,18 @@ const Password = (props: {
       transition={{ duration: 1, delay: 2 }}
       exit={{ opacity: 0 }}
     >
-      <input
-        ref={initialInput}
-        className={styles.passwordInput}
-        type="text"
-        placeholder="Password"
-        value={password}
-        onChange={passwordChange}
-        autoFocus
-        required
-      />
+      <form onSubmit={}>
+        <input
+          ref={initialInput}
+          className={styles.passwordInput}
+          type="text"
+          placeholder="Password"
+          value={password}
+          onChange={passwordChange}
+          autoFocus
+          required
+        />
+      </form>
       <div className={styles.accessContainer}>
         {showAcceptance && (
           <motion.p
