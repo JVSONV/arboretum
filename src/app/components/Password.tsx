@@ -37,7 +37,7 @@ const Password = (props: {
     setPassword(event.target.value);
     if (event.target.value === "grow") {
       initialInput.current!.blur();
-      formRef.current?.submit()
+      formRef.current?.submit();
       setShowAcceptance((prev) => !prev);
       setTimeout(() => {
         props.showInputHandler((prev) => !prev);
@@ -67,6 +67,11 @@ const Password = (props: {
           onChange={passwordChange}
           autoFocus
           required
+          onKeyDown={(e) => {
+            if (e.key === "return") {
+              formRef.current?.onsubmit;
+            }
+          }}
         />
       </form>
       <div className={styles.accessContainer}>
