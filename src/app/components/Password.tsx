@@ -21,7 +21,7 @@ const Password = (props: {
 
   const onSubmitHandler = (event: FormEvent<HTMLFormElement>) => {
     event.preventDefault();
-    if (password === "grow") {
+    if (initialInput.current!.value === "grow") {
       initialInput.current!.blur();
       setShowAcceptance((prev) => !prev);
       setTimeout(() => {
@@ -35,17 +35,17 @@ const Password = (props: {
 
   const passwordChange = (event: ChangeEvent<HTMLInputElement>) => {
     setPassword(event.target.value);
-    if (event.target.value === "grow") {
-      initialInput.current!.blur();
-      formRef.current?.submit();
-      setShowAcceptance((prev) => !prev);
-      setTimeout(() => {
-        props.showInputHandler((prev) => !prev);
-      }, 3000);
-      setTimeout(() => {
-        props.showFormHandler((prev: any) => !prev);
-      }, 3000);
-    }
+    // if (event.target.value === "grow") {
+    //   initialInput.current!.blur();
+    // //   formRef.current?.submit();
+    //   setShowAcceptance((prev) => !prev);
+    //   setTimeout(() => {
+    //     props.showInputHandler((prev) => !prev);
+    //   }, 3000);
+    //   setTimeout(() => {
+    //     props.showFormHandler((prev: any) => !prev);
+    //   }, 3000);
+    // }
   };
 
   return (
@@ -67,12 +67,8 @@ const Password = (props: {
           onChange={passwordChange}
           autoFocus
           required
-          onKeyDown={(e) => {
-            if (e.key === "return") {
-              formRef.current?.onsubmit;
-            }
-          }}
         />
+        <button>Submit</button>
       </form>
       <div className={styles.accessContainer}>
         {showAcceptance && (
