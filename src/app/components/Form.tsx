@@ -53,15 +53,15 @@ const Form = (props: {
 
   return (
     <div className={styles.container}>
-      <motion.h1
-        initial={{ opacity: 0 }}
-        animate={{ opacity: 1 }}
-        transition={{ duration: 1 }}
-        className={styles.company}
+      <h1
+      // initial={{ opacity: 0 }}
+      // animate={{ opacity: 1 }}
+      // transition={{ duration: 1 }}
+      // className={styles.company}
       >
         <Company />
-      </motion.h1>
-      <motion.form
+      </h1>
+      <form
         ref={formRef}
         className={styles.inputForm}
         onSubmit={(e) => onFormSubmit(e)}
@@ -116,7 +116,7 @@ const Form = (props: {
         <button className={styles.submit} type="submit">
           submit
         </button>
-      </motion.form>
+      </form>
     </div>
   );
 };
