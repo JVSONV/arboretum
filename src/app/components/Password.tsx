@@ -22,7 +22,6 @@ const Password = (props: {
     setPassword(event.target.value);
     if (event.target.value === "grow") {
       initialInput.current!.blur();
-      onSubmitHandler();
       setShowAcceptance((prev) => !prev);
       setTimeout(() => {
         props.showInputHandler((prev) => !prev);
