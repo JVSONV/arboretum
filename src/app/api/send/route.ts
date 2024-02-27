@@ -1,6 +1,6 @@
 import { google } from "googleapis";
 import { NextResponse } from "next/server";
-export const dynamic = 'force-dynamic'; 
+export const dynamic = "force-dynamic";
 
 export async function POST(req: Request) {
   if (req.method === "POST") {
@@ -14,15 +14,9 @@ export async function POST(req: Request) {
         ["https://www.googleapis.com/auth/spreadsheets"]
       );
 
-      const response = jwt.authorize(async function (err) {
-        if (err) {
-          return NextResponse.json({ error: err.message }, { status: 500 });
-        }
-
-        const gsapi = google.sheets({ version: "v4", auth: jwt });
-        console.log(formData)
+      const gsapi = google.sheets({ version: "v4", auth: jwt });
         const data = await gsapi.spreadsheets.values.append({
-          spreadsheetId: process.env.GOOGLE_SHEET_ID,
+          spreadsheetId: `${process.env.GOOGLE_SHEET_ID}`,
           range: "Sheet1!A1:D1",
           insertDataOption: "INSERT_ROWS",
           valueInputOption: "USER_ENTERED",
@@ -39,12 +33,9 @@ export async function POST(req: Request) {
             ],
           },
         });
-        throw new Error(data.statusText, formData)
-        console.log(data, formData)
-        return NextResponse.json({ data: data, formInfo: formData });
-      });
-
-      return NextResponse.json({ data: response });
+        console.log(data.data, 1);
+        return NextResponse.json({ data: data.data });
+      // return NextResponse.json({ data: response });
     } catch (error: any) {
       return NextResponse.json({ error: error.message }, { status: 500 });
     }

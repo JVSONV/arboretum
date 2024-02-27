@@ -49,9 +49,9 @@ const Form = (props: {
       .then(async (res) => {
         props.formIsVisable((prev: boolean) => !prev);
         props.formIsSubmitted((prev) => !prev);
-        const data = res.body?.getReader();
-        const reeed = await data?.read();
-        console.log(reeed)
+        // const data = res.body?.getReader();
+        // const reeed = await data?.read();
+        console.log()
       })
       .catch((err) => console.log(err));
   };
