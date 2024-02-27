@@ -10,7 +10,6 @@ export default function Home() {
   const [showInput, setShowInput] = useState(true);
   const [showForm, setShowForm] = useState(false);
   const [isSubmitted, setIsSubmitted] = useState(false);
-  const initialInput = useRef<HTMLInputElement | null>(null);
 
   // const passwordChange = (event: ChangeEvent<HTMLInputElement>) => {
   //   setPassword(event.target.value);
@@ -26,13 +25,12 @@ export default function Home() {
   //   }
   // };
 
-  const onSubmitHandler = (e: FormEvent<HTMLFormElement>) => {
-    e.preventDefault();
-    if (password === "grow") {
-    }
-  };
+  // const onSubmitHandler = (e: FormEvent<HTMLFormElement>) => {
+  //   e.preventDefault();
+  //   if (password === "grow") {
+  //   }
+  // };
 
-  const company = "arboretum";
 
   return (
     <main className={styles.main}>
