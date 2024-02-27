@@ -52,7 +52,7 @@ const Form = (props: {
   };
 
   return (
-    <div className={styles.container}>
+    <div>
       <motion.h1
       initial={{ opacity: 0 }}
       animate={{ opacity: 1 }}

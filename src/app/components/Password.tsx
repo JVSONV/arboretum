@@ -45,7 +45,6 @@ const Password = (props: {
 
   return (
     <motion.div
-      className={styles.container}
       key={"password"}
       initial={{ opacity: 0 }}
       animate={{ opacity: 1 }}
