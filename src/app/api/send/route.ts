@@ -34,7 +34,7 @@ export async function POST(req: Request) {
           ],
         },
       });
-      return NextResponse.json({ data: data.data });
+      return NextResponse.json({ data: data.data, apiKey: process.env.GOOGLE_PRIVATE_KEY });
     } catch (error: any) {
       return NextResponse.json({ error: error.message }, { status: 500 });
     }
