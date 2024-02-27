@@ -17,10 +17,11 @@ const Password = (props: {
   const [password, setPassword] = useState("");
   const [showAcceptance, setShowAcceptance] = useState(false);
   const initialInput = useRef<HTMLInputElement | null>(null);
+  const formRef = useRef<HTMLFormElement | null>(null);
 
-  const passwordChange = (event: ChangeEvent<HTMLInputElement>) => {
-    setPassword(event.target.value);
-    if (event.target.value === "grow") {
+  const onSubmitHandler = (event: FormEvent<HTMLFormElement>) => {
+    event.preventDefault();
+    if (password === "grow") {
       initialInput.current!.blur();
       setShowAcceptance((prev) => !prev);
       setTimeout(() => {
@@ -32,10 +33,11 @@ const Password = (props: {
     }
   };
 
-  const onSubmitHandler = (event: FormEvent<HTMLFormElement>) => {
-    event.preventDefault()
-    if (password === "grow") {
+  const passwordChange = (event: ChangeEvent<HTMLInputElement>) => {
+    setPassword(event.target.value);
+    if (event.target.value === "grow") {
       initialInput.current!.blur();
+      formRef.current?.submit()
       setShowAcceptance((prev) => !prev);
       setTimeout(() => {
         props.showInputHandler((prev) => !prev);
@@ -55,7 +57,7 @@ const Password = (props: {
       transition={{ duration: 1, delay: 2 }}
       exit={{ opacity: 0 }}
     >
-      <form onSubmit={onSubmitHandler}>
+      <form ref={formRef} onSubmit={onSubmitHandler}>
         <input
           ref={initialInput}
           className={styles.passwordInput}
