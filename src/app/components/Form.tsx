@@ -30,10 +30,13 @@ const Form = (props: {
       let windowHeight = window.innerHeight / 4;
       moveTop = Math.floor(windowHeight);
     }
-    setTimeout(() => {
+    const animations = setTimeout(() => {
       setShowForm(true);
       animate(scope.current, { top: moveTop }, { duration: 1 });
     }, 3000);
+    return ()=> {
+      clearTimeout(animations)
+    }
   });
 
   const [scope, animate] = useAnimate();
@@ -143,7 +146,11 @@ const Form = (props: {
               id="linkIn"
               onChange={(e) => formDataHandler(e)}
               value={formData.linkedIn}
-              
+              onInvalid={(e) => (e.target as HTMLInputElement).setCustomValidity(
+                      "Please include https:// in url"
+                    )
+              }
+              onInput={e => (e.target as HTMLInputElement).setCustomValidity("")}
               required
             />
           </div>

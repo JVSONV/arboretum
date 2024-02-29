@@ -24,7 +24,7 @@ export async function POST(req: Request) {
         valueInputOption: "USER_ENTERED",
         requestBody: {
           majorDimension: "ROWS",
-          range: "Sheet1!A1:D1",
+          range: "Sheet1!A1:E1",
           values: [
             [
               formData.name,
