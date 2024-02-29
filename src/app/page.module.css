@@ -118,6 +118,7 @@
 }
 
 .submitted {
+  margin-top: calc(40svh - 1px);
   text-align: center;
 }
 
