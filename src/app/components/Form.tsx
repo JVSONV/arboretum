@@ -135,6 +135,7 @@ const Form = (props: {
           <div className={styles.inputContainer}>
             <label htmlFor="linkedIn">LinkedIn:</label>
             <input
+              title="Please include https:// in url"
               type="url"
               name="linkedIn"
               id="linkIn"
@@ -151,7 +152,6 @@ const Form = (props: {
               id="name"
               onChange={(e) => formDataHandler(e)}
               value={formData.name}
-              required
             />
           </div>
           <button ref={submitButton} className={styles.submit} type="submit">
