@@ -27,8 +27,8 @@ const Form = (props: {
     ) {
       moveTop = 3;
     } else {
-      let windowHeight = window.innerHeight / 4
-      moveTop = Math.floor(windowHeight)
+      let windowHeight = window.innerHeight / 4;
+      moveTop = Math.floor(windowHeight);
     }
     setTimeout(() => {
       setShowForm(true);
@@ -43,11 +43,13 @@ const Form = (props: {
     email: string;
     response: string;
     linkedIn: string;
+    reference: string;
   }>({
     name: "",
     email: "",
     response: "",
     linkedIn: "",
+    reference: "",
   });
 
   const submitButton = useRef<HTMLButtonElement>(null);
@@ -141,17 +143,22 @@ const Form = (props: {
               id="linkIn"
               onChange={(e) => formDataHandler(e)}
               value={formData.linkedIn}
+              onInvalid={(e) =>
+                (e.target as HTMLInputElement).setCustomValidity(
+                  "Please include https:// in url"
+                )
+              }
               required
             />
           </div>
           <div className={styles.inputContainer}>
-            <label htmlFor="name">Who told you?:</label>
+            <label htmlFor="reference">Who told you?:</label>
             <input
               type="text"
-              name="name"
-              id="name"
+              name="reference"
+              id="reference"
               onChange={(e) => formDataHandler(e)}
-              value={formData.name}
+              value={formData.reference}
             />
           </div>
           <button ref={submitButton} className={styles.submit} type="submit">

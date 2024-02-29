@@ -19,7 +19,7 @@ export async function POST(req: Request) {
 
       const data = await gsapi.spreadsheets.values.append({
         spreadsheetId: `${process.env.GOOGLE_SHEET_ID}`,
-        range: "Sheet1!A1:D1",
+        range: "Sheet1!A1:E1",
         insertDataOption: "INSERT_ROWS",
         valueInputOption: "USER_ENTERED",
         requestBody: {
@@ -31,6 +31,7 @@ export async function POST(req: Request) {
               formData.email,
               formData.response,
               formData.linkedIn,
+              formData.reference
             ],
           ],
         },
