@@ -143,11 +143,7 @@ const Form = (props: {
               id="linkIn"
               onChange={(e) => formDataHandler(e)}
               value={formData.linkedIn}
-              onInvalid={(e) =>
-                (e.target as HTMLInputElement).setCustomValidity(
-                  "Please include https:// in url"
-                )
-              }
+              
               required
             />
           </div>
