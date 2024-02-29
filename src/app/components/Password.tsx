@@ -1,7 +1,6 @@
 import React, {
   ChangeEvent,
   Dispatch,
-  FormEvent,
   SetStateAction,
   useRef,
   useState,
@@ -17,18 +16,6 @@ const Password = (props: {
   const [showAcceptance, setShowAcceptance] = useState(false);
   const initialInput = useRef<HTMLInputElement | null>(null);
 
-  const onSubmitHandler = () => {
-    if (initialInput.current!.value.toLowerCase() === "grow") {
-      setShowAcceptance((prev) => !prev);
-      setTimeout(() => {
-        props.showInputHandler((prev) => !prev);
-      }, 3000);
-      setTimeout(() => {
-        props.showFormHandler((prev: any) => !prev);
-      }, 3000);
-    }
-  };
-
   const passwordChange = (event: ChangeEvent<HTMLInputElement>) => {
     setPassword(event.target.value);
     if (event.target.value.toLowerCase() === "grow") {
@@ -39,7 +26,7 @@ const Password = (props: {
       }, 3000);
       setTimeout(() => {
         props.showFormHandler((prev: any) => !prev);
-      }, 3000);
+      }, 4000);
     }
   };
 
@@ -50,6 +37,7 @@ const Password = (props: {
       animate={{ opacity: 1 }}
       transition={{ duration: 1, delay: 2 }}
       exit={{ opacity: 0 }}
+      className={styles.passwordContainer}
     >
       <input
         ref={initialInput}

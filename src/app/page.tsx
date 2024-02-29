@@ -7,7 +7,7 @@ import Password from "./components/Password";
 
 export default function Home() {
   const [showInput, setShowInput] = useState(true);
-  const [showForm, setShowForm] = useState(false);
+  const [showFormStage, setShowFormStage] = useState(false);
   const [isSubmitted, setIsSubmitted] = useState(false);
 
   return (
@@ -15,12 +15,12 @@ export default function Home() {
       <AnimatePresence mode="wait">
         {showInput && (
           <Password
-            showFormHandler={setShowForm}
+            showFormHandler={setShowFormStage}
             showInputHandler={setShowInput}
           />
         )}
-        {showForm && (
-          <Form formIsSubmitted={setIsSubmitted} formIsVisable={setShowForm} />
+        {showFormStage && (
+          <Form formIsSubmitted={setIsSubmitted} formStageIsVisable={setShowFormStage} />
         )}
         {isSubmitted && (
           <div className={styles.submitted}>

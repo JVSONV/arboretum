@@ -1,6 +1,9 @@
 .main {
-  padding: 1rem;
-  color: "#ffff";
+  height: 100%;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }
 
 .container {
@@ -9,16 +12,27 @@
 
 .accessContainer {
   padding: 0;
-  min-height: 40px;
+  /* min-height: 40px; */
 }
 
 .success {
+  position: relative;
   text-align: center;
   font-size: 2rem;
 }
+
+.passwordContainer {
+  margin-top: calc(40svh - 1px);
+  display: flex;
+  flex-direction: column;
+  padding: 0;
+  padding-bottom: 50px;
+  align-items: center;
+}
+
 .passwordInput {
   padding-inline: 0;
-  margin-bottom: 2rem;
+  /* margin-bottom: 2rem; */
   margin-inline: auto;
   text-transform: uppercase;
   font-size: 2rem;
@@ -28,24 +42,29 @@
   outline-style: hidden;
   outline: none;
 }
+
+.formStage {
+  position: absolute;
+  top: calc(40svh - 1px);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-content: center;
+}
 .company {
   font-size: 3em;
   text-align: center;
-  margin-top: 0;
-  margin-bottom: 4rem;
   max-width: 350px;
 }
 
 .inputForm {
-  max-width: 350px;
-  margin-top: 4rem;
-  position: relative;
+  /* max-width: 350px; */
+  /* margin-top: 4rem; */
   margin-inline: auto;
   display: flex;
   gap: 40px;
   flex-direction: column;
   justify-content: center;
-  align-items: flex-start;
   border-radius: 0.3rem;
 }
 
@@ -54,6 +73,7 @@
   width: 100%;
 }
 .inputContainer label {
+  /* text-align: center; */
   padding-inline: 0.5rem;
   position: absolute;
   top: -15px;
@@ -90,19 +110,24 @@
   padding-right: 0;
 }
 .submit {
-  padding: .5rem;
+  padding: 0.5rem;
   margin-inline: auto;
   font-size: 2rem;
   border: none;
   background-color: #000;
 }
 
-.submitted{
+.submitted {
   text-align: center;
 }
 
 .submit:hover {
   background-color: #ffff;
-  border-radius: .5rem;
+  border-radius: 0.5rem;
   color: #000;
+}
+
+.submit:disabled {
+  background-color: grey;
+  border-radius: 0.5rem;
 }
